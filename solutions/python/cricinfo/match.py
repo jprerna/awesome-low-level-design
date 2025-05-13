@@ -1,19 +1,14 @@
+from dataclasses import dataclass, field
 from match_status import MatchStatus
 
+@dataclass
 class Match:
-    def __init__(self, id, title, venue, start_time, teams):
-        self.id = id
-        self.title = title
-        self.venue = venue
-        self.start_time = start_time
-        self.teams = teams
-        self.status = MatchStatus.SCHEDULED
+    id: int
+    title: str
+    venue: str
+    start_time: datetime
+    teams: list
+    status: MatchStatus = field(default=MatchStatus.SCHEDULED)
 
-    def get_id(self):
-        return self.id
-
-    def set_status(self, status):
+    def set_status(self, status: MatchStatus):
         self.status = status
-
-    def get_title(self):
-        return self.title
